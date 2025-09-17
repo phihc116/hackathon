@@ -1,6 +1,7 @@
 /// <reference types="vitest" />
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import path from "path";
 
 export default defineConfig(async () => {
   const tailwindcss = (await import("@tailwindcss/vite")).default;
@@ -17,5 +18,11 @@ export default defineConfig(async () => {
       reportCompressedSize: true,
       commonjsOptions: { transformMixedEsModules: true },
     },
+    resolve: {
+      alias: [
+        { find: '@', replacement: path.resolve(__dirname, 'src') },
+        { find: '@features', replacement: path.resolve(__dirname, 'src/features') }
+      ]
+    },    
   };
 });
