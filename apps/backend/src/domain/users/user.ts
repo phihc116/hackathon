@@ -1,9 +1,9 @@
-import { User as PrismaUser } from '@prisma/client';
 import { Entity } from '../../core/domain';
 import { ObjectId } from 'bson';
-export class User extends Entity<PrismaUser> {
+import { Identity } from '../../core/domain';
+export class User extends Entity<Identity> {
   constructor(
-    public override readonly id: string,
+    public override readonly id: Identity,
     public email: string,
     public name: string | null,
     public password: string,
@@ -23,18 +23,5 @@ export class User extends Entity<PrismaUser> {
       now,
       now
     );
-  }
- 
-  changeEmail(newEmail: string) {
-    if (!newEmail.includes('@')) {
-      throw new Error('Invalid email address');
-    }
-    this.email = newEmail;
-    this.touchUpdatedAt();
-  }
-
-  setPassword(hashedPassword: string) {
-    this.password = hashedPassword;
-    this.touchUpdatedAt();
-  }
+  } 
 }

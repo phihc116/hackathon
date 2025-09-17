@@ -1,8 +1,6 @@
-import { Identity } from "./identity";
-
-export abstract class Entity<TPrisma = null> {
+export abstract class Entity<TId = null> {
   constructor(
-    public readonly id: Identity,
+    public readonly id: TId,
     public readonly createdAt: Date,
     public updatedAt: Date,
   ) {}
@@ -10,10 +8,5 @@ export abstract class Entity<TPrisma = null> {
   
   touchUpdatedAt() {
     this.updatedAt = new Date();
-  }
- 
-  equals(entity?: Entity<TPrisma>): boolean {
-    if (!entity) return false;
-    return this.id === entity.id;
-  }
+  } 
 }
