@@ -82,5 +82,7 @@
       }
     }
   },
-  "dependencies": {}
+  "dependencies": {
+    "@prisma/client": "^6.16.2"
+  }
 }
